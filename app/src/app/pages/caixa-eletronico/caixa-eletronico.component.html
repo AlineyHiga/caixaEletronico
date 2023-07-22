@@ -1,1 +1,36 @@
-<p>caixa-eletronico works!</p>
+<div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Caixa Eletrônico</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions >
+      <mat-form-field [formGroup]="formCaixa" >
+        <mat-label>Valor</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="valueSaque"
+          [(ngModel)]="valueSaque"
+        >
+        <span matTextPrefix>R$&nbsp;</span>
+        <mat-error >{{errorMensagem()}}</mat-error>
+      </mat-form-field>
+      <mat-slider
+        class="example-margin"
+        [max]="saqueMax"
+        [min]="10"
+        [step]="10"
+      >
+        <input matSliderThumb [(ngModel)]="valueSaque" #slider>
+      </mat-slider>
+      <button
+        mat-raised-button
+        [disabled]="formCaixa.controls['valueSaque'].hasError('min') ||
+          formCaixa.controls['valueSaque'].hasError('max')"
+        (click)="saque()"
+      >Sacar</button>
+    </mat-card-actions>
+  </mat-card>
+
+</div>
+
