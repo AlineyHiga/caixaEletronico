@@ -1,28 +1,30 @@
-<div>
+<div class="main">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Caixa Eletrônico</mat-card-title>
     </mat-card-header>
     <mat-card-actions >
-      <mat-form-field [formGroup]="formCaixa" >
-        <mat-label>Valor</mat-label>
-        <input
-          matInput
-          type="number"
-          formControlName="valueSaque"
-          [(ngModel)]="valueSaque"
+      <div>
+        <mat-form-field [formGroup]="formCaixa" >
+          <mat-label>Valor</mat-label>
+          <input
+            matInput
+            type="number"
+            formControlName="valueSaque"
+            [(ngModel)]="valueSaque"
+          >
+          <span matTextPrefix>R$&nbsp;</span>
+          <mat-error >{{errorMensagem()}}</mat-error>
+        </mat-form-field>
+        <mat-slider
+          class="example-margin"
+          [max]="saqueMax"
+          [min]="10"
+          [step]="10"
         >
-        <span matTextPrefix>R$&nbsp;</span>
-        <mat-error >{{errorMensagem()}}</mat-error>
-      </mat-form-field>
-      <mat-slider
-        class="example-margin"
-        [max]="saqueMax"
-        [min]="10"
-        [step]="10"
-      >
-        <input matSliderThumb [(ngModel)]="valueSaque" #slider>
-      </mat-slider>
+          <input matSliderThumb [(ngModel)]="valueSaque" #slider>
+        </mat-slider>
+      </div>
       <button
         mat-raised-button
         [disabled]="formCaixa.controls['valueSaque'].hasError('min') ||
