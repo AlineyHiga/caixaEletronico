@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { IQtdeNota } from '../../interface/qtdeNota';
 
 @Injectable({
   providedIn: 'root'
@@ -13,17 +14,24 @@ export class UtilService {
     return `${date.getHours()}:${date.getMinutes()}`;
   }
 
-  getQtdeNotas(valor: number, listNumNotas: number[]): object {
+  getQtdeNotas(valor: number, listNumNotas: number[]): IQtdeNota {
     let val = valor;
     let sortNumNotas = listNumNotas.sort().reverse();
-    let listQtdeNota:any = {};
+    let listQtdeNota:any =
+    {
+      qtdNotas:[],
+      valor_notas:[],
+      valor_resto:0,
+    };
     sortNumNotas.forEach((numNota) => {
       let qtdeNota =(val - (val % numNota) ) / numNota;
       val = val % numNota;
-      let atribute = 'nota_' + numNota.toString();
-      listQtdeNota[atribute] = qtdeNota;
+      if(qtdeNota != 0 ){
+        listQtdeNota.valor_notas.push(numNota);
+        listQtdeNota.qtdNotas.push(qtdeNota);
+      }
     });
-    listQtdeNota = {... listQtdeNota, valor_resto:val};
+    listQtdeNota = {... listQtdeNota, valor_resto: val};
     return listQtdeNota;
   }
 

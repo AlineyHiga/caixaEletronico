@@ -21,7 +21,7 @@ describe('UtilService', () => {
   it('should call getQtdeNotas', () => {
     let valor = 15330;
     let listQtdeNota = [50,20,10];
-    let objQtdeNota:object = { nota_50: 306, nota_20: 1, nota_10: 1, valor_resto: 0 }
+    let objQtdeNota:object = {qtdNotas:[306,1,1], valor_notas: [50,20,10], valor_resto: 0 }
     expect(service.getQtdeNotas(valor,listQtdeNota)).toStrictEqual(objQtdeNota)
   });
 
