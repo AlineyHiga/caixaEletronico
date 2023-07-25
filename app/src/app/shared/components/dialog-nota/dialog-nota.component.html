@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Valor Sacado</h1>
+<div mat-dialog-content>
+  <ul>
+    <li  *ngFor="let nota of data.valor_notas; let i = index">
+      <span *ngIf="data.qtdNotas[i] === 1; else plural"><b>{{data.qtdNotas[i]}}</b> nota de {{nota}}</span>
+      <ng-template #plural>
+        <span><b>{{data.qtdNotas[i]}}</b> notas de {{nota}}</span>
+      </ng-template>
+    </li>
+  </ul>
+  <b>valor total sacado: {{data.saque - data.valor_resto}}</b>
+</div>
