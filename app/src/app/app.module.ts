@@ -30,7 +30,7 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonModule,
     ReactiveFormsModule,
     DialogNotaComponent,
-    MatIconModule
+    MatIconModule,
 
   ],
   providers: [],
