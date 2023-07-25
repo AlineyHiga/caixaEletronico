@@ -26,6 +26,8 @@
         </mat-slider>
       </div>
       <button
+        class="sacar"
+        color="primary"
         mat-raised-button
         [disabled]="formCaixa.controls['valueSaque'].hasError('min') ||
           formCaixa.controls['valueSaque'].hasError('max')"
@@ -33,6 +35,15 @@
       >Sacar</button>
     </mat-card-actions>
   </mat-card>
-
+  <div *ngIf="listNotas.length">
+    <h2>Notas Disponíveis</h2>
+    <div class="lista-nota">
+      <span class="nota" *ngFor="let item of listNotas">
+        <mat-icon aria-hidden="true">local_atm</mat-icon> {{item}}
+      </span>
+    </div>
+  </div>
+<hr>
+  <div></div>
 </div>
 

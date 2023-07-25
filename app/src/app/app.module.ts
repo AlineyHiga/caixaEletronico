@@ -10,6 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import { DialogNotaComponent } from './shared/components/dialog-nota/dialog-nota.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatCardModule,
     MatButtonModule,
     ReactiveFormsModule,
+    DialogNotaComponent,
+    MatIconModule
 
   ],
   providers: [],

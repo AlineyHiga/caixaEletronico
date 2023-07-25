@@ -1,11 +1,17 @@
 .main {
   margin: 3px 0 24px 0 24px;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: stretch;
+  font-family:'Merriweather Sans', sans-serif;
 }
-h1{
-  text-align: center;
+mat-card-title{
+  font-family:'Merriweather Sans', sans-serif;
+  font-weight: 800;
+}
+mat-card-header{
+  border-bottom: 1px #80808026 solid;
 }
 mat-card {
   height: 350px;
@@ -23,6 +29,21 @@ mat-form-field {
 mat-slider {
   width: 100%;
 }
-button {
+.sacar {
   width: 60%;
+  max-width: 400px;
+}
+
+.lista-nota {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nota{
+  max-width: 15%;
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+  font-family:'Merriweather Sans', sans-serif;
+  font-weight: 800;
 }
