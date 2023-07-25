@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UtilService } from '../../shared/service/util/util.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogNotaComponent } from '../../shared/components/dialog-nota/dialog-nota.component';
 
 @Component({
   selector: 'app-caixa-eletronico',
@@ -14,8 +16,11 @@ export class CaixaEletronicoComponent implements OnInit, OnDestroy {
   valueSaque = 10;
   formCaixa:FormGroup;
   sub$: Subscription | undefined;
+  listNotas=[10,20,50];
+
   constructor(
     private utilService: UtilService,
+    public dialog: MatDialog,
   ){
     this.hour = this.utilService.getFormatHour();
     this.saqueMax = this.utilService.checkSaqueMax(this.hour);
@@ -34,8 +39,10 @@ export class CaixaEletronicoComponent implements OnInit, OnDestroy {
     this.sub$?.unsubscribe();
   }
   saque(){
-    let notas=this.utilService.getQtdeNotas(this.valueSaque,[10,20,50]);
-    console.log(notas);
+    let notas=this.utilService.getQtdeNotas(this.valueSaque,this.listNotas);
+    this.dialog.open(DialogNotaComponent,{
+      data: {...notas, saque:this.valueSaque}
+    })
   }
 
   errorMensagem(): string {
