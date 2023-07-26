@@ -20,7 +20,7 @@
         <mat-slider
           aria-label="valor do saque"
           [max]="saqueMax"
-          [min]="10"
+          [min]="saqueMin"
           [step]="10"
         >
           <input matSliderThumb [(ngModel)]="valueSaque" #slider>
@@ -30,8 +30,7 @@
         class="sacar"
         color="primary"
         mat-raised-button
-        [disabled]="formCaixa.controls['valueSaque'].hasError('min') ||
-          formCaixa.controls['valueSaque'].hasError('max')"
+        [disabled]="valueSaque < saqueMin || valueSaque > saqueMax"
         (click)="saque()"
       >Sacar</button>
     </mat-card-actions>

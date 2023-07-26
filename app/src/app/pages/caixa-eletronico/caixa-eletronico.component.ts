@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UtilService } from '../../shared/service/util/util.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subscription, timeInterval, timeout } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogNotaComponent } from '../../shared/components/dialog-nota/dialog-nota.component';
 
@@ -13,11 +13,11 @@ import { DialogNotaComponent } from '../../shared/components/dialog-nota/dialog-
 export class CaixaEletronicoComponent implements OnInit, OnDestroy {
   hour:string;
   saqueMax: number;
+  saqueMin:number = 10;
   valueSaque = 10;
   formCaixa:FormGroup;
   sub$: Subscription | undefined;
   listNotas=[10,20,50];
-
   constructor(
     private utilService: UtilService,
     public dialog: MatDialog,
@@ -33,6 +33,8 @@ export class CaixaEletronicoComponent implements OnInit, OnDestroy {
     this.sub$ = this.formCaixa.valueChanges.subscribe(()=> {
       this.hour = this.utilService.getFormatHour();
       this.saqueMax = this.utilService.checkSaqueMax(this.hour);
+      this.formCaixa.controls['valueSaque'].setValidators([Validators.max(this.saqueMax), Validators.min(this.saqueMin)])
+      this.formCaixa.controls['valueSaque'].markAsTouched();
     })
   }
   ngOnDestroy(): void {
