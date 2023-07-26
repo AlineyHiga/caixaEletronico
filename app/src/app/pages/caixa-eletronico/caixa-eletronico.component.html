@@ -1,23 +1,24 @@
 <div class="main">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Caixa Eletrônico</mat-card-title>
+      <mat-card-title><h1>Caixa Eletrônico</h1></mat-card-title>
     </mat-card-header>
     <mat-card-actions >
       <div>
-        <mat-form-field [formGroup]="formCaixa" >
-          <mat-label>Valor</mat-label>
+        <mat-form-field [formGroup]="formCaixa"  role="form" >
+          <mat-label aria-label="valor">Valor</mat-label>
           <input
+            aria-label="reais, valor saque"
             matInput
             type="number"
             formControlName="valueSaque"
             [(ngModel)]="valueSaque"
           >
-          <span matTextPrefix>R$&nbsp;</span>
+          <span matTextPrefix aria-hidden="true">R$&nbsp;</span>
           <mat-error >{{errorMensagem()}}</mat-error>
         </mat-form-field>
         <mat-slider
-          class="example-margin"
+          aria-label="valor do saque"
           [max]="saqueMax"
           [min]="10"
           [step]="10"
@@ -37,8 +38,8 @@
   </mat-card>
   <div *ngIf="listNotas.length">
     <h2>Notas Disponíveis</h2>
-    <div class="lista-nota">
-      <span class="nota" *ngFor="let item of listNotas">
+    <div  class="lista-nota">
+      <span class="nota" *ngFor="let item of listNotas" attr.aria-label="nota {{item}}">
         <mat-icon aria-hidden="true">local_atm</mat-icon> {{item}}
       </span>
     </div>

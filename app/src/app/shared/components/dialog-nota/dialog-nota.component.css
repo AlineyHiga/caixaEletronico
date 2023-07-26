@@ -1,0 +1,17 @@
+h1{
+  height: auto;
+}
+.div-btn {
+  display: flex;
+  justify-content: end;
+}
+ul{
+  padding-left: 4px;
+  border-bottom: 1px gray solid;
+  padding-bottom: 6px;
+  margin-bottom: 5px;
+}
+li{
+  list-style: none;
+  display: flex;
+}
